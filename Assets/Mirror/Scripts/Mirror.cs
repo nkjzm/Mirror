@@ -13,8 +13,6 @@ namespace nkjzm.Mirror
         [SerializeField]
         bool EnabledTargetCamera = false;
         [SerializeField]
-        bool EnabledRotation = false;
-        [SerializeField]
         Camera ReflectionCamera = null;
         [SerializeField]
         Transform Specular = null;
@@ -76,28 +74,27 @@ namespace nkjzm.Mirror
             if (TrackingCamera == null) { return; }
 
             // カメラから鏡面へのベクトル
-            var diff = Specular.position - TrackingCamera.transform.position;
+            var diff = transform.position - TrackingCamera.transform.position;
             // 鏡面の垂直ベクトル
             var normal = transform.forward;
             // 鏡面からの反射ベクトル
             var reflection = diff + 2 * (Vector3.Dot(-diff, normal)) * normal;
             // 鏡面座標に反転させた反射ベクトルを加算する
-            ReflectionCamera.transform.position = Specular.position - reflection;
+            ReflectionCamera.transform.position = transform.position - reflection;
             // 鏡面の方向に向ける
-            ReflectionCamera.transform.LookAt(Specular.position);
+            ReflectionCamera.transform.LookAt(transform.position);
             // カメラ設定の更新
-            var distance = Vector3.Distance(Specular.position, ReflectionCamera.transform.position);
+            var distance = Vector3.Distance(transform.position, ReflectionCamera.transform.position);
             ReflectionCamera.nearClipPlane = distance * 0.9f;
 
             // 鏡面をカメラ方向に向ける
-            Specular.rotation = !EnabledRotation ? Quaternion.identity
-            : Quaternion.LookRotation(Specular.position - TrackingCamera.transform.position);
+            Specular.rotation = Quaternion.LookRotation(Specular.position - TrackingCamera.transform.position);
 
             // フレームのサイズを更新
             Frame.localScale = new Vector3(Size, Size, 1);
             // 鏡面のサイズを調整
             var angle = Vector3.Angle(-transform.forward, ReflectionCamera.transform.forward);
-            var specularSize = Size + Mathf.Sin(angle * Mathf.Deg2Rad);
+            var specularSize = Size + Mathf.Sin(angle * Mathf.Deg2Rad) * 2;
             Specular.localScale = new Vector3(-specularSize, specularSize, 1);
 
             // 焦点距離と表示したい鏡面サイズから画角(FOV)を計算する
