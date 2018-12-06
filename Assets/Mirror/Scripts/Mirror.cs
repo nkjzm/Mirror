@@ -110,17 +110,3 @@ namespace nkjzm.Mirror
         }
     }
 }
-
-// カメラから鏡面へのベクトル
-var diff = Specular.position - TrackingCamera.transform.position;
-// 鏡面の垂直ベクトル
-var normal = transform.forward;
-// 鏡面からの反射ベクトル
-var reflection = diff + 2 * (Vector3.Dot(-diff, normal)) * normal;
-// 鏡面座標に反転させた反射ベクトルを加算する
-ReflectionCamera.transform.position = Specular.position - reflection;
-// 鏡面の方向に向ける
-ReflectionCamera.transform.LookAt(Specular.position);
-// カメラ設定の更新
-var distance = Vector3.Distance(Specular.position, ReflectionCamera.transform.position);
-ReflectionCamera.nearClipPlane = distance* 0.9f;
