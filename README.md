@@ -4,6 +4,10 @@ Unityで使えるシンプルな鏡のサンプルです。
 
 ![](docs/demo.gif)
 
+## Download
+
+[Mirror.unitypackage](https://github.com/nkjzm/Mirror/releases/download/v1.0.0/Mirror.unitypackage)
+
 ## License
 
 Released under the MIT license.
