@@ -2,6 +2,8 @@
 
 Unityで使えるシンプルな鏡のサンプルです。
 
+![](docs/demo.gif)
+
 ## License
 
 Released under the MIT license.
