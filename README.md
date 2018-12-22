@@ -4,6 +4,8 @@ Unityで使えるシンプルな鏡のサンプルです。
 
 ![](docs/demo.gif)
 
+参考: [Unityで鏡を実装する方法](https://qiita.com/nkjzm/items/ccba41a6e7e5211aae95)
+
 ## Download
 
 [Mirror.unitypackage](https://github.com/nkjzm/Mirror/releases/download/v1.0.0/Mirror.unitypackage)
